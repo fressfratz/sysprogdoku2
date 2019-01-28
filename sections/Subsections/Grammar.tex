@@ -1,0 +1,5 @@
+\subsection{Grammar}
+The parser has to evaluate the grammar shown in table \ref{table:grammar}. Therefore first and follow sets are used. The follow set \texttt{follow(T)} contains all terminals that might appear right after the terminal \texttt{T}. The first set \texttt{first(T)} on the other hand, contains all legit terminals which may first appear with a specific grammar rule.\\
+With the knowledge of those sets the order of the tokens can be checked during the recursive descent.
+\\\\
+The functionality of the grammar class is to calculate these first and follow sets of a specific rule.

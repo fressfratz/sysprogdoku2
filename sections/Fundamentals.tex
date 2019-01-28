@@ -1,0 +1,33 @@
+\section{Fundamentals}
+This section explains the fundamental working methods of a parser and will outline its components.
+
+\subsection{Introduction to the working method of a parser}
+The task incorporates the implementation of a parser that links the scanner to the parse tree by processing the tokens received from the scanner and thereof creating a parse tree that consists of nodes.
+
+\subsubsection{Parser}
+The parser evaluates a sequence of tokens which is received from the scanner by performing a syntactical analysis, using the grammar listed in table \ref{table:grammar}. The tokens are received calling the scanners method \texttt{nextToken()}.\\
+Then a parse tree gets created and the tokens are passed to the parse tree for further processing.
+If any syntactical errors occur, the parser terminates by logging the errors. 
+\begin{longtable}[h!]{llp{10cm}}
+	PROG&::=&DECLS STATEMENTS\\
+	DECLS&::=&DECL ; DECLS | $ \varepsilon $\\
+	DECL&::=&int ARRAY identifier\\
+	ARRAY&::=&[integer] | $ \varepsilon $\\
+	STATEMENTS&::=&STATEMENT ; STATEMENTS | $ \varepsilon $\\
+	STATEMENT&::=&identifier INDEX := EXP | write(EXP) | read(identifier INDEX) | {STATEMENTS} | if (EXP) STATEMENT else STATEMENT | while (EXP) STATEMENT\\
+	EXP&::=&EXP2 OP\_EXP\\
+	EXP2&::=&(EXP) | identifier INDEX | integer | -EXP2 | !EXP2\\
+	INDEX&::=&[EXP] | $ \varepsilon $\\
+	OP\_EXP&::=&OP EXP | $ \varepsilon $\\
+	OP&::=&+ | - | * | : | < | > | = | =:= | \&\&\\
+	
+	\caption{The grammer the parser has to evaluate.}
+	\label{table:grammar}
+\end{longtable}
+
+\subsubsection{ParseTree}
+The parse trees task is to perform a semantic analysis of the source code. That means, the consistency is checked by verifying the namespaces, declarations and typecasts.\\
+This happens by calling the method \texttt{typeCheck()}, that checks, if the types of the nodes in a sub tree is consistent. If not, the check stops and logs the errors.\\
+
+\subsubsection{TreeNode}
+A tree node is part of the parse tree, or more precisely of a sub tree that is created whenever a new rule of the grammar in table \ref{table:grammar} is recognised. This happens during the recursive descent.

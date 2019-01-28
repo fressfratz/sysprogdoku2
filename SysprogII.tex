@@ -1,0 +1,26 @@
+\documentclass[12pt,a4paper]{article_modified}
+\usepackage[left=2.50cm, right=2.50cm, top=3.75cm, bottom=3.00cm]{geometry}
+\usepackage[export]{adjustbox}
+\usepackage[acronyms]{glossaries}
+\usepackage{hyperref}
+
+\pagestyle{headings}
+\begin{document}
+	\input{sections/Frontpage}
+	\newpage
+	\tableofcontents
+	\newpage
+	%\addcontentsline{toc}{section}{List of Figures}
+	%\listoffigures
+	%\addcontentsline{toc}{section}{List of Tables}
+	%\listoftables
+	\newpage
+	\input{sections/Introduction}
+	\newpage
+	\input{sections/Fundamentals}
+	\newpage
+	\input{sections/Implementation}
+	\newpage
+	\input{sections/Conclusion}
+	\newpage	
+\end{document}
